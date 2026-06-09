@@ -1,0 +1,48 @@
+:root {
+  color-scheme: light;
+}
+body {
+  min-height: 100vh;
+}
+.card-card {
+  perspective: 1200px;
+  cursor: pointer;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d;
+}
+.card-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+.card-front {
+  display: flex;
+}
+.card-back {
+  transform: rotateY(180deg);
+}
+.page-section {
+  animation: fadeIn 0.35s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item.active {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}

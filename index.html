@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>背單字卡片</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-p0xaHGZ8Hw7V5gVedUhbvQnqgC0qZbulk0E2cpzE/kVjYsm7Yx4lAnP+gIb0y1E0" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">背單字小幫手</a>
+      <div class="d-flex gap-2">
+        <button id="practiceBtn" class="btn btn-outline-light btn-sm">練習頁</button>
+        <button id="manageBtn" class="btn btn-outline-light btn-sm">管理頁</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <section id="practicePage" class="page-section">
+      <div class="text-center mb-4">
+        <h2>卡片翻頁學習</h2>
+        <p class="text-secondary">點擊卡片讓單字翻面，查看翻譯、詞性、例句與字根分析。</p>
+      </div>
+
+      <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+          <div class="card-card" id="flipCard">
+            <div class="card-inner" id="cardInner">
+              <div class="card-front card-face d-flex flex-column justify-content-center align-items-center p-4">
+                <p class="small text-muted mb-2">英文單字</p>
+                <h1 id="wordFront" class="display-5 fw-bold">hello</h1>
+              </div>
+              <div class="card-back card-face p-4">
+                <h5 class="mb-3">翻譯</h5>
+                <p id="wordTranslation" class="fs-5 mb-3">哈囉</p>
+                <div class="mb-2">
+                  <span class="badge bg-secondary">詞性</span>
+                  <span id="wordPart" class="ms-2">interjection</span>
+                </div>
+                <div class="mb-2">
+                  <strong>例句：</strong>
+                  <p id="wordExample" class="mb-2 text-muted">Hello! How are you?</p>
+                </div>
+                <div>
+                  <strong>字根分析：</strong>
+                  <p id="wordRoot" class="mb-0 text-muted">來自古英語 hǣl，意為健康或平安。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <button id="prevWord" class="btn btn-outline-primary">上一個</button>
+            <button id="nextWord" class="btn btn-outline-primary">下一個</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">單字清單</h5>
+              <div id="wordList" class="list-group list-group-flush"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="managePage" class="page-section d-none">
+      <div class="text-center mb-4">
+        <h2>管理單字</h2>
+        <p class="text-secondary">在這裡新增單字或編輯現有內容，並透過自動填入按鈕快速補齊資料。</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <form id="wordForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label">英文單字</label>
+                    <input id="inputWord" type="text" class="form-control" placeholder="請輸入英文單字" required />
+                  </div>
+                  <div class="col-md-6 d-flex align-items-end">
+                    <button id="autoFillBtn" type="button" class="btn btn-outline-success w-100">自動填入</button>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">翻譯</label>
+                    <input id="inputTranslation" type="text" class="form-control" placeholder="例如：哈囉" />
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">詞性</label>
+                    <input id="inputPart" type="text" class="form-control" placeholder="例如：interjection" />
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">例句</label>
+                    <textarea id="inputExample" class="form-control" rows="2" placeholder="例如：Hello! How are you?"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">字根分析</label>
+                    <textarea id="inputRoot" class="form-control" rows="2" placeholder="例如：來自古英語 hǣl，意為健康或平安。"></textarea>
+                  </div>
+                  <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-primary">新增單字</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">已儲存單字</h5>
+              <div id="manageWordList" class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>單字</th>
+                      <th>翻譯</th>
+                      <th>詞性</th>
+                      <th>例句</th>
+                      <th>字根分析</th>
+                    </tr>
+                  </thead>
+                  <tbody id="manageTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
